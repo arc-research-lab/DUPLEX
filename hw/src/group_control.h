@@ -11,18 +11,41 @@
 #include <cmath>
 #include "etc/ap_utils.h"
 
+#ifndef IMG_HEIGHT
 #define IMG_HEIGHT 100
+#endif
+#ifndef IMG_WIDTH
 #define IMG_WIDTH 100
-#define IMG_SIZE IMG_HEIGHT * IMG_WIDTH
-#define TOTAL_ITERS IMG_SIZE
-
+#endif
+#ifndef M
 #define M 16
-#define N 16
+#endif
+#ifndef N_k
 #define N_k 1
+#endif
+#ifndef N_w
 #define N_w 16
-#define M_w (M / N_k)
+#endif
+#ifndef D
 #define D 8
-#define RESP_D D
+#endif
+
+#define IMG_SIZE (IMG_HEIGHT * IMG_WIDTH)
+#define N        (N_k * N_w)
+#define M_w      (M / N_k)
+#define RESP_D   D
+#define B_DEPTH  ((IMG_SIZE + N_w - 1) / N_w)
+#define PE_LEN   (IMG_SIZE / M)
+
+#if (M % N_k) != 0
+#error "M must be divisible by N_k"
+#endif
+#if (M_w % N_w) != 0
+#error "M_w must be a multiple of N_w"
+#endif
+#if (IMG_SIZE % M) != 0
+#error "IMG_SIZE must be divisible by M (PE_LEN)"
+#endif
 
 #define BRAM_LATENCY 1
 #define ADJ_LATENCY 1
