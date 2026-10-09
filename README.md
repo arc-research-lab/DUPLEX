@@ -2,10 +2,9 @@
 Duplication-crossbar exploration for on-chip random access. The DUPLEX architecture combines bank duplication and dynamic crossbar routing to allow parallel reads under random accessing for on-chip memory. The DSE selects the optimal configuration under a performance or resource target.
 
 ## Requirements
-- requirements.txt
-- AMD Vitis 2024.2 
-- VCK190 base platform
-- Versal common image 
+## Requirements
+Python ≥ 3.9 and `pip install -r requirements.txt`.
+Hardware build only: Vitis 2024.2, VCK190 base platform, Versal common image.
 
 ## Repository Layout 
 1. DSE directory: contains design space exploration code, including performance and resource models and DSE scripts
